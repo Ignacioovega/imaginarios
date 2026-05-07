@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Imaginarios</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <a href="#acerca">Acerca</a>
+        <a href="#profes">Profes</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <section class="inicio">
+        <h1>Bienvenido a Imaginarios</h1>
+
+        <p>
+            Un espacio creativo para todas las edades 🎨
+        </p>
+    </section>
+
+    <section id="acerca" class="bloque">
+        <h2>Acerca de</h2>
+
+        <p>
+            Imaginarios es un taller de arte pensado para niños,
+            adolescentes y adultos donde buscamos desarrollar la creatividad,
+            la imaginación y la expresión artística.
+        </p>
+
+        <p>
+            Trabajamos pintura, dibujo, artesanías y proyectos creativos.
+        </p>
+    </section>
+      <section id="profes" class="bloque">
+
+    <h2>Profes</h2>
+
+    <img src="/static/profes.png" class="foto-profes">
+
+    <p>
+        Conocé a las profes que forman parte de Imaginarios 🎨
+    </p>
+
+</section>
+
+<section id="galeria" class="bloque">
+
+    <h2>Galería</h2>
+
+    <div class="galeria">
+
+        <img src="/static/cuadro1.png" onclick="abrirImagen(this.src)">
+
+        <img src="/static/cuadro2.png" onclick="abrirImagen(this.src)">
+
+        <img src="/static/cuadro3.png" onclick="abrirImagen(this.src)">
+
+    </div>
+
+</section>
+
+<div id="visor" onclick="cerrarImagen()">
+
+    <img id="imagen-grande">
+
+</div>
+
+ 
+
+<section id="contacto" class="bloque">
+
+    <h2>Contacto</h2>
+
+    <p>
+
+      <a href="https://www.instagram.com/imaginarioespaciodearte/" target="_blank" style="background: linear-gradient(45deg, purple, red, orange); color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-size: 22px; font-weight: bold; display: inline-block;">
+
+Instagram
+
+</a>
+
+    </p>
+
+    <p>¡Consultanos por WhatsApp!</p>
+
+</section>
+<a href="https://wa.me/5491160373092" class="wpp" target="_blank">
+
+    WhatsApp
+
+</a>
+   <script>
+
+function abrirImagen(src) {
+
+    document.getElementById("visor").style.display = "flex";
+
+    document.getElementById("imagen-grande").src = src;
+}
+
+function cerrarImagen() {
+
+    document.getElementById("visor").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
