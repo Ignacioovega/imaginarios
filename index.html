@@ -31,7 +31,6 @@
         <a href="#profes">Profes</a>
         <a href="#galeria">Galería</a>
         <a href="#preguntas">Preguntas</a>
-        <a href="#inscripcion">Inscripción</a>
         <a href="#contacto">Contacto</a>
     </nav>
 
@@ -114,52 +113,15 @@
 
         <details>
             <summary>¿Cuáles son los horarios y precios?</summary>
-            <p>Varían según el taller. Escribinos por WhatsApp o completá el formulario de inscripción y te contamos todos los detalles.</p>
+            <p>Varían según el taller. Escribinos por WhatsApp o Instagram y te contamos todos los detalles.</p>
         </details>
 
         <details>
             <summary>¿Cómo me anoto?</summary>
-            <p>Completando el formulario de Inscripción, o escribiéndonos por WhatsApp o Instagram.</p>
+            <p>Escribiéndonos por WhatsApp o Instagram.</p>
         </details>
 
     </div>
-
-</section>
-
-<section id="inscripcion" class="bloque animar">
-
-    <h2>Inscripción</h2>
-
-    <p>Dejanos los datos y te contactamos para coordinar.</p>
-
-    <form class="form-inscripcion" action="https://formspree.io/f/moeqljaw" method="POST">
-
-        <input type="text" name="Nombre del nene/a" placeholder="Nombre del nene/a" required>
-
-        <input type="number" name="Edad" placeholder="Edad" min="1" max="99" required>
-
-        <input type="text" name="Adulto responsable" placeholder="Nombre del adulto responsable" required>
-
-        <input type="tel" name="Teléfono" placeholder="Teléfono / WhatsApp" required>
-
-        <select name="Taller" required>
-            <option value="" disabled selected>¿Qué taller le interesa?</option>
-            <option value="Pintura y dibujo">Pintura y dibujo</option>
-            <option value="Porcelana fría">Porcelana fría</option>
-            <option value="Crochet">Crochet</option>
-            <option value="Diseño de indumentaria">Diseño de indumentaria</option>
-            <option value="Manualidades">Manualidades</option>
-        </select>
-
-        <textarea name="Comentario" placeholder="Comentario (opcional)" rows="3"></textarea>
-
-        <input type="text" name="_gotcha" class="campo-oculto" tabindex="-1" autocomplete="off">
-
-        <button type="submit">Enviar inscripción</button>
-
-        <p class="form-estado"></p>
-
-    </form>
 
 </section>
 
@@ -208,40 +170,6 @@ function abrirImagen(src) {
 function cerrarImagen() {
 
     document.getElementById("visor").style.display = "none";
-}
-
-const formInscripcion = document.querySelector(".form-inscripcion");
-
-if (formInscripcion) {
-    formInscripcion.addEventListener("submit", async (evento) => {
-        evento.preventDefault();
-
-        const boton = formInscripcion.querySelector("button");
-        const estado = formInscripcion.querySelector(".form-estado");
-
-        boton.disabled = true;
-        estado.textContent = "Enviando...";
-        estado.className = "form-estado";
-
-        try {
-            const respuesta = await fetch(formInscripcion.action, {
-                method: "POST",
-                body: new FormData(formInscripcion),
-                headers: { "Accept": "application/json" }
-            });
-
-            if (!respuesta.ok) throw new Error("fallo el envio");
-
-            formInscripcion.reset();
-            estado.textContent = "¡Listo! Te vamos a contactar a la brevedad.";
-            estado.classList.add("ok");
-        } catch (error) {
-            estado.textContent = "Hubo un problema al enviar. Probá de nuevo o escribinos por WhatsApp.";
-            estado.classList.add("error");
-        }
-
-        boton.disabled = false;
-    });
 }
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
