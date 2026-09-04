@@ -367,3 +367,73 @@ h2 {
         max-height: 260px;
     }
 }
+
+.form-inscripcion {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 420px;
+    margin: 30px auto 0;
+    text-align: left;
+}
+
+.form-inscripcion input,
+.form-inscripcion select,
+.form-inscripcion textarea {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #222;
+}
+
+.form-inscripcion textarea {
+    resize: vertical;
+}
+
+.form-inscripcion button {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, purple, red, orange);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-inscripcion button:hover {
+    transform: scale(1.03);
+}
+
+.form-inscripcion button:disabled {
+    opacity: 0.6;
+    cursor: default;
+    transform: none;
+}
+
+.campo-oculto {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.form-estado {
+    min-height: 1.2em;
+    font-size: 15px;
+    margin: 0;
+}
+
+.form-estado.ok {
+    color: #7CFC90;
+}
+
+.form-estado.error {
+    color: #ff8080;
+}
