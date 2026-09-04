@@ -297,9 +297,6 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    body {
-        background-attachment: scroll;
-    }
 
     .mapa {
         height: 220px;
