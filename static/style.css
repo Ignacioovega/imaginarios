@@ -180,7 +180,7 @@ h2 {
 .wpp {
     position: fixed;
 
-    bottom: 20px;
+    bottom: 90px;
 
     right: 20px;
 
@@ -348,7 +348,7 @@ h2 {
     .wpp {
         padding: 12px 16px;
         font-size: 16px;
-        bottom: 14px;
+        bottom: 70px;
         right: 14px;
     }
 }
