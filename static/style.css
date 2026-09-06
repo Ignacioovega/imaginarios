@@ -27,6 +27,8 @@ body {
     color: white;
 
     text-align: center;
+
+    cursor: url("pincel-cursor.png") 6 34, auto;
 }
 
 h1, h2 {
