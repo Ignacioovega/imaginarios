@@ -26,6 +26,8 @@
 
 <body>
 
+    <canvas id="pincel" aria-hidden="true"></canvas>
+
     <nav>
         <a href="#acerca">Acerca</a>
         <a href="#profes">Profes</a>
@@ -185,6 +187,74 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.querySelectorAll(".animar").forEach((el) => observador.observe(el));
 } else {
     document.querySelectorAll(".animar").forEach((el) => el.classList.add("visible"));
+}
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const lienzo = document.getElementById("pincel");
+    const ctx = lienzo.getContext("2d");
+    const colores = ["#c77dff", "#ff8fab", "#ffb562", "#7bdff2", "#ffd6ff"];
+    let manchas = [];
+    let animando = false;
+    let ultimoPunto = null;
+
+    function ajustarTamano() {
+        lienzo.width = window.innerWidth;
+        lienzo.height = window.innerHeight;
+    }
+    ajustarTamano();
+    window.addEventListener("resize", ajustarTamano);
+
+    function agregarMancha(x, y) {
+        if (ultimoPunto) {
+            const dist = Math.hypot(x - ultimoPunto.x, y - ultimoPunto.y);
+            if (dist < 14) return;
+        }
+        ultimoPunto = { x, y };
+
+        manchas.push({
+            x, y,
+            radio: 10 + Math.random() * 14,
+            alfa: 0.35,
+            color: colores[Math.floor(Math.random() * colores.length)]
+        });
+
+        if (!animando) {
+            animando = true;
+            requestAnimationFrame(dibujar);
+        }
+    }
+
+    function dibujar() {
+        ctx.clearRect(0, 0, lienzo.width, lienzo.height);
+
+        manchas.forEach((m) => {
+            const gradiente = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.radio);
+            gradiente.addColorStop(0, m.color + "cc");
+            gradiente.addColorStop(1, m.color + "00");
+            ctx.fillStyle = gradiente;
+            ctx.globalAlpha = m.alfa;
+            ctx.beginPath();
+            ctx.arc(m.x, m.y, m.radio, 0, Math.PI * 2);
+            ctx.fill();
+            m.alfa -= 0.012;
+        });
+        ctx.globalAlpha = 1;
+
+        manchas = manchas.filter((m) => m.alfa > 0);
+
+        if (manchas.length > 0) {
+            requestAnimationFrame(dibujar);
+        } else {
+            animando = false;
+        }
+    }
+
+    window.addEventListener("mousemove", (e) => agregarMancha(e.clientX, e.clientY));
+
+    window.addEventListener("touchmove", (e) => {
+        const t = e.touches[0];
+        if (t) agregarMancha(t.clientX, t.clientY);
+    }, { passive: true });
 }
 
 </script>
